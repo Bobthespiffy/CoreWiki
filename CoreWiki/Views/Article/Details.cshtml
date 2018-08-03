@@ -1,0 +1,18 @@
+﻿@model CoreWiki.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Model.Topic</h2>
+<h5><b>Last Published: </b>@Model.Published.ToShortDateString() @Model.Published.ToShortTimeString()</h5>
+
+<markdown>@Model.Content</markdown>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Topic" class="btn btn-primary">Edit</a> 
+    @if (Model.Topic != "Home Page")
+    {
+        <a href="~/" class="btn btn-primary">Back to List</a>
+    }
+</div>
