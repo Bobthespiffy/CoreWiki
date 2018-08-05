@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{topicName?}"
 @model CoreWiki.RazorPages.Pages.DetailsModel
 
 @{
@@ -6,10 +6,14 @@
 }
 
 <h2>@Model.Article.Topic</h2>
+<h5><b>Last Published: </b>@Model.Article.Published.ToShortDateString() @Model.Article.Published.ToShortTimeString()</h5>
 
 <markdown>@Model.Article.Content</markdown>
 
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Article.Topic">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Article.Topic">Edit</a> 
+    @if (Model.Article.Topic.ToLower() != "homepage")
+    {
+        <text>|</text> <a href="~/">Back to List</a>
+    }
 </div>

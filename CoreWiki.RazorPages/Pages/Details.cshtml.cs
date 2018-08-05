@@ -20,14 +20,16 @@ namespace CoreWiki.RazorPages.Pages
 
         public Article Article { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string topicName)
         {
-            if (id == null)
+            topicName = topicName ?? "HomePage";
+
+            if (topicName == null)
             {
                 return NotFound();
             }
 
-            Article = await _context.Articles.SingleOrDefaultAsync(m => m.Topic == id);
+            Article = await _context.Articles.SingleOrDefaultAsync(m => m.Topic == topicName);
 
             if (Article == null)
             {

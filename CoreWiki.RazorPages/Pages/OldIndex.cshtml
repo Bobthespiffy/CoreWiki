@@ -1,5 +1,4 @@
-﻿@page
-@model CoreWiki.RazorPages.Pages.IndexModel
+﻿@model CoreWiki.RazorPages.Pages.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -32,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Topic">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Topic">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Topic">Delete</a>
+                <a asp-page="./Edit" asp-route-topicName="@item.Topic">Edit</a> |
+                <a asp-page="./Details" asp-route-topicName="@item.Topic">Details</a> |
+                <a asp-page="./Delete" asp-route-topicName="@item.Topic">Delete</a>
             </td>
         </tr>
 }

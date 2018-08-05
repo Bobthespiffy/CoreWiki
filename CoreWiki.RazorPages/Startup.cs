@@ -29,7 +29,11 @@ namespace CoreWiki.RazorPages
                     options.UseSqlite("Data Source=./App_Data/wiki.db");
                 });
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AddPageRoute("/Details", "{topicName?}");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
