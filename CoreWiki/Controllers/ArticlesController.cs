@@ -148,7 +148,7 @@ namespace CoreWiki.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             }
             return View(article);
         }
@@ -180,7 +180,7 @@ namespace CoreWiki.Controllers
             var article = await _context.Articles.SingleOrDefaultAsync(m => m.Topic == id);
             _context.Articles.Remove(article);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Details));
         }
 
         private bool ArticleExists(string id)

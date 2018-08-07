@@ -36,8 +36,7 @@ namespace CoreWiki.RazorPages.Pages
             _context.Articles.Add(Article);
             await _context.SaveChangesAsync();
 
-            return Redirect($"~/{Article.Topic}");
-            //return RedirectToPage($"~/{Article.Topic}");
+            return Redirect($"/{Article.Topic}");
         }
     }
 }

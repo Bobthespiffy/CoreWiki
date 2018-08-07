@@ -63,7 +63,7 @@ namespace CoreWiki.RazorPages.Pages
                 }
             }
 
-            return RedirectToPage("./Index");
+            return Redirect($"/{(Article.Topic.ToLower() == "homepage" ? "" : Article.Topic)}");
         }
 
         private bool ArticleExists(string id)

@@ -8,12 +8,12 @@
 <h2>@Model.Article.Topic</h2>
 <h5><b>Last Published: </b>@Model.Article.Published.ToShortDateString() @Model.Article.Published.ToShortTimeString()</h5>
 
-<markdown>@Model.Article.Content</markdown>
+<markdown markdown="Article.Content" />
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Article.Topic">Edit</a> 
     @if (Model.Article.Topic.ToLower() != "homepage")
     {
-        <text>|</text> <a href="~/">Back to List</a>
+        <text>|</text> <a href="~/">Back to Home Page</a>
     }
 </div>

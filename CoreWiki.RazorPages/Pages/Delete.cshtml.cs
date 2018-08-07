@@ -52,7 +52,7 @@ namespace CoreWiki.RazorPages.Pages
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details");
         }
     }
 }
