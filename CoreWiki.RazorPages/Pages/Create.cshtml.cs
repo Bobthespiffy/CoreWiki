@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using CoreWiki.RazorPages.Models;
+using NodaTime;
 
 namespace CoreWiki.RazorPages.Pages
 {
     public class CreateModel : PageModel
     {
         private readonly CoreWiki.RazorPages.Models.ApplicationDbContext _context;
+        private readonly IClock _clock;
 
-        public CreateModel(CoreWiki.RazorPages.Models.ApplicationDbContext context)
+        public CreateModel(CoreWiki.RazorPages.Models.ApplicationDbContext context, IClock clock)
         {
             _context = context;
+            _clock = clock;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        public IActionResult OnGet() => Page();
 
         [BindProperty]
         public Article Article { get; set; }
@@ -32,6 +28,8 @@ namespace CoreWiki.RazorPages.Pages
             {
                 return Page();
             }
+
+            Article.Published = _clock.GetCurrentInstant();
 
             _context.Articles.Add(Article);
             await _context.SaveChangesAsync();

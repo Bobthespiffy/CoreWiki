@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using NodaTime;
 
 namespace CoreWiki.RazorPages
 {
@@ -30,6 +31,9 @@ namespace CoreWiki.RazorPages
                 {
                     options.UseSqlite("Data Source=./App_Data/wiki.db");
                 });
+
+            // Add NodaTime for time-based testing
+            services.AddSingleton<IClock>(SystemClock.Instance);
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
