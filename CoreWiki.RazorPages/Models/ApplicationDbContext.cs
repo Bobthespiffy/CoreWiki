@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+using NodaTime;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreWiki.RazorPages.Models
 {
@@ -16,9 +14,22 @@ namespace CoreWiki.RazorPages.Models
 
         public DbSet<Article> Articles { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void SeedData(ApplicationDbContext context)
         {
-            base.OnModelCreating(modelBuilder);
+            context.Database.EnsureCreated();
+
+            // Load an initial home page
+            if (!context.Articles.Any(a => a.Topic.ToLower() == "homepage"))
+            {
+                var homePageArticle = new Article
+                {
+                    Topic = "HomePage",
+                    Content = "This is the default home page.  Please change me!!",
+                    Published = SystemClock.Instance.GetCurrentInstant()
+                };
+                context.Articles.Add(homePageArticle);
+                context.SaveChanges();
+            }
         }
     }
 }

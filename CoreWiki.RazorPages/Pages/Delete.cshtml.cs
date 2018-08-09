@@ -42,6 +42,10 @@ namespace CoreWiki.RazorPages.Pages
             if (id == null)
             {
                 return NotFound();
+            } 
+            else if (id.ToLower() == "homepage")
+            {
+                return NotFound();
             }
 
             Article = await _context.Articles.FindAsync(id);

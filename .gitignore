@@ -331,3 +331,6 @@ ASALocalRun/
 
 # Omit our lib folders that are being restored from npm
 wwwroot/lib
+
+# Omit our wiki.db
+wiki.db
