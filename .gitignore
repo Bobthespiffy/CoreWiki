@@ -330,7 +330,8 @@ ASALocalRun/
 .mfractor/
 
 # Omit our lib folders that are being restored from npm
-wwwroot/lib
+CoreWiki.RazorPages/wwwroot/lib
+!CoreWiki.RazorPages/wwwroot/lib/simplemde
 
 # Omit our wiki.db
-wiki.db
+CoreWiki.RazorPages/App_Data/wiki.db
