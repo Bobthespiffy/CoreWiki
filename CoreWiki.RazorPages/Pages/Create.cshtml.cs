@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CoreWiki.RazorPages.Models;
 using NodaTime;
+using System.Linq;
 
 namespace CoreWiki.RazorPages.Pages
 {
@@ -26,6 +27,12 @@ namespace CoreWiki.RazorPages.Pages
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+
+            if (_context.Articles.Any(a => a.Topic == Article.Topic))
+            {
+                ModelState.AddModelError("Article.Topic", $"The topic '{Article.Topic}' already exists.  Please choose another name.");
                 return Page();
             }
 
